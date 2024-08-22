@@ -1,3 +1,5 @@
+use exercise::*;
+
 fn main() {
-    println!("Hello, world!");
+    test_crate();
 }
