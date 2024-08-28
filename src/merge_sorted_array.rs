@@ -1,8 +1,26 @@
 pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
-    for i in 0..m {
-        for j in 0..n {
+    if m == 0 {
+        nums1.clone_from(nums2);
+        return;
+    }
 
+    for _ in 0..(nums1.len() as i32 - m) {
+        _ = nums1.pop();
+    }
+
+    let mut temp: Vec<i32> = Vec::new();
+    while let Some(num2) = nums2.pop(){
+        let num1 = nums1.pop().unwrap();
+        if num1 < num2 {
+            nums1.push(num1);
+            temp.push(num2);
+        } else {
+            nums2.push(num2);
+            temp.push(num1);
         }
+    }
+    while let Some(temp_num) = temp.pop() {
+        nums1.push(temp_num);
     }
 }
 
